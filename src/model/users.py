@@ -1,9 +1,12 @@
-from settings import *
+from src.config.settings import * 
+from flask_sqlalchemy import SQLAlchemy
+from src import app
 import json
-
+import sys
+# insert at 1, 0 is the script path (or '' in REPL)
 # Initializing our database
 db = SQLAlchemy(app)
-
+#Aqui deberia importar el dto
 
 # the class User will inherit the db.Model of SQLAlchemy
 class User(db.Model):
@@ -20,7 +23,6 @@ class User(db.Model):
                 'apellido': self.apellido, 'celular': self.celular,
                 'correo': self.correo, 'contrasenia': self.contrasenia}
         # this method we are defining will convert our output to json
-
     def add_user(self, _nombre, _apellido, _correo, _contrasenia, _celular="None"):
         '''function to add User to database using _title, _year, _genre
         as parameters'''
@@ -57,4 +59,6 @@ class User(db.Model):
         User.query.filter_by(id=_id).delete()
         # filter by id and delete
         db.session.commit()  # commiting the new change to our database
-db.metadata.create_all(app)
+
+db.create_all()
+db.session.commit()
