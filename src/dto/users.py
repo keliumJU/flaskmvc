@@ -1,12 +1,13 @@
-from pydantic import BaseModel
-
-class UsersDTO(BaseModel):
-    id: int
+class UsersDTO():
     nombre: str
     apellido: str
     correo: str
     celular: str
     contrasenia: str
 
-    class Config:
-        orm_mode = True
+    def __init__(self,nombre,apellido,correo,celular,contrasenia):
+        self.nombre=nombre
+        self.apellido=apellido
+        self.correo=correo
+        self.celular=celular
+        self.contrasenia=contrasenia

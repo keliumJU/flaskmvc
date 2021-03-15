@@ -1,15 +1,10 @@
-from src.config.settings import * 
-from flask_sqlalchemy import SQLAlchemy
-from src import app
-import json
-import sys
-# insert at 1, 0 is the script path (or '' in REPL)
+from src.dto.users import UsersDTO
+from src.config.settings import db
 # Initializing our database
-db = SQLAlchemy(app)
 #Aqui deberia importar el dto
 
 # the class User will inherit the db.Model of SQLAlchemy
-class User(db.Model):
+class UserModel(db.Model):
     __tablename__ = 'Users'  # creating a table name
     id=db.Column(db.Integer, primary_key=True)  # this is the primary key
     nombre=db.Column(db.String(255), nullable=False)
@@ -23,40 +18,44 @@ class User(db.Model):
                 'apellido': self.apellido, 'celular': self.celular,
                 'correo': self.correo, 'contrasenia': self.contrasenia}
         # this method we are defining will convert our output to json
-    def add_user(self, _nombre, _apellido, _correo, _contrasenia, _celular="None"):
+
+        #Debe recibir un dto como parametro? un dto con typado statico 
+    def add_user(self, user: UsersDTO):
         '''function to add User to database using _title, _year, _genre
         as parameters'''
         # creating an instance of our User constructor
-        new_user = User(nombre=_nombre, apellido=_apellido, celular=_celular, correo=_correo, contrasenia=_contrasenia)
+        new_user = UserModel(nombre=user.nombre, apellido=user.apellido, celular=user.celular, correo=user.correo, contrasenia=user.contrasenia)
         db.session.add(new_user)  # add new user to database session
         db.session.commit()  # commit changes to session
 
     def get_all_users(self):
         '''function to get all users in our database'''
-        return [User.json(user) for user in User.query.all()]
+        #Debo retornar una lista de UsersDTO?
+        return [UserModel.json(user) for user in UserModel.query.all()]
 
     def get_user(self, _id):
         '''function to get user using the id of the User as parameter'''
-        return [User.json(User.query.filter_by(id=_id).first())]
+        #Deberia retornar un UsersDTO?
+        return [UserModel.json(UserModel.query.filter_by(id=_id).first())]
         # User.json() coverts our output to json
         # the filter_by method filters the query by the id
         # the .first() method displays the first value
 
-    def update_user(self, _id, _nombre, _apellido,_correo, _contrasenia, _celular="None"):
+    def update_user(self, _id, user:UsersDTO):
         '''function to update the details of a user using the id, title,
         year and genre as parameters'''
-        user_to_update = User.query.filter_by(id=_id).first()
-        user_to_update.nombre= _nombre
-        user_to_update.apellido= _apellido
-        user_to_update.celular= _celular
-        user_to_update.correo= _correo
-        user_to_update.contrasenia= _contrasenia
+        user_to_update = UserModel.query.filter_by(id=_id).first()
+        user_to_update.nombre= user.nombre 
+        user_to_update.apellido=user.apellido 
+        user_to_update.celular=user.celular 
+        user_to_update.correo=user.correo 
+        user_to_update.contrasenia=user.contrasenia 
         db.session.commit()
 
     def delete_user(self, _id):
         '''function to delete a user from our database using
            the id of the user as a parameter'''
-        User.query.filter_by(id=_id).delete()
+        UserModel.query.filter_by(id=_id).delete()
         # filter by id and delete
         db.session.commit()  # commiting the new change to our database
 

@@ -1,6 +1,28 @@
-from src.model.users import User 
-from flask import Flask, request, Response, jsonify
-from src import app
+from src.model.users import UserModel 
+from src.dto.users import UsersDTO
+
+#Controlador para los usuarios
+
+userModel=UserModel()
+class UserController():
+    def list(self):
+        data=userModel.get_all_users()
+        return data
+
+    def get(self, _id):
+        data=userModel.get_user(_id)
+        return data   
+
+    def create(self, user:UsersDTO):
+        add=userModel.add_user(user)
+
+    def put(self, _id, user:UsersDTO):
+        modify=userModel.update_user(_id, user)
+
+    def delete(self, _id):
+        del_user=userModel.delete_user(_id)
+
+"""
 # route to get all movies
 @app.route('/users', methods=['GET'])
 def get_users():
@@ -43,3 +65,4 @@ def remove_movie(id):
     response = Response("Usuario borrado correctamente", status=200, mimetype='application/json')
     return response
 
+"""
