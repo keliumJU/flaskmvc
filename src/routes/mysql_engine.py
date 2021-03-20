@@ -9,7 +9,7 @@ mysqlEngineController=MysqlEngineController()
 def create_db_route():
     request_data = request.get_json()
     print(request_data["name"])
-    mysqlEngineController.create(request_data["name"][0])
+    mysqlEngineController.create(request_data["name"])
     return Response("Base de datos creada",status=201,mimetype='application/json')
 
 @app.route('/mysql_engine',methods=['GET'])

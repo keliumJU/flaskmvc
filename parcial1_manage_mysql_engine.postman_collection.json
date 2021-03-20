@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "cd3db23f-a6d7-4dbb-a356-ce2b355a426e",
+		"name": "parcial1_manage_mysql_engine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "listar_todas_las_bases_de_datos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "usa_o_selecciona_la_base_de_datos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "listar_todas_las_tablas_con_sus_columnas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "crear_una_tabla_en_x_base_de_datos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"lpm1\",\r\n    \"campos\": [\r\n        {\r\n            \"field\": \"id\",\r\n            \"type_column\": \"INT(6) UNSIGNED\",\r\n            \"key\": \"PRIMARY KEY\",\r\n            \"null_column\": \"\",\r\n            \"default\": \"\",\r\n            \"extra\": \"AUTO_INCREMENT\"\r\n        },{\r\n            \"field\": \"firstname\",\r\n            \"type_column\": \"VARCHAR(30)\",\r\n            \"null_column\": \"NOT NULL\",\r\n            \"key\": \"\",\r\n            \"default\": \"\",\r\n            \"extra\": \"\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:1234/mysql_engine/table",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "1234",
+					"path": [
+						"mysql_engine",
+						"table"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar_una_tabla_en_x_base_de_datos",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"lpm1\",\r\n    \"campos\": [\r\n        {\r\n            \"field\": \"id\",\r\n            \"type_column\": \"INT(6) UNSIGNED\",\r\n            \"key\": \"PRIMARY KEY\",\r\n            \"null_column\": \"\",\r\n            \"default\": \"\",\r\n            \"extra\": \"AUTO_INCREMENT\"\r\n        },\r\n        {\r\n            \"field\": \"other\",\r\n            \"type_column\": \"VARCHAR(56)\",\r\n            \"null_column\": \"\",\r\n            \"key\": \"\",\r\n            \"default\": \"DEFAULT 'LPM NOTHING'\",\r\n            \"extra\": \"\"\r\n        },\r\n        {\r\n            \"field\": \"other2\",\r\n            \"type_column\": \"VARCHAR(56)\",\r\n            \"null_column\": \"\",\r\n            \"key\": \"\",\r\n            \"default\": \"DEFAULT 'LPM NOTHING'\",\r\n            \"extra\": \"\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:1234/mysql_engine/table",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "1234",
+					"path": [
+						"mysql_engine",
+						"table"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear_base_de_datos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}
