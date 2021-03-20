@@ -54,5 +54,5 @@ metodo get(para usar base de datos(selecciona))
 http://127.0.0.1:1234/mysql_engine/<nombre_database>
 
 
-<<!! ES POSIBLE IMPORTAR EL ARCHIVO parcial1_manage_mysql_engine.postman_collection.json PARA IMPORTAR DESDE CLIENTE HTTPS(postman,insomnia client REST)!!>>
+<strong><<!! ES POSIBLE IMPORTAR EL ARCHIVO parcial1_manage_mysql_engine.postman_collection.json PARA IMPORTAR DESDE CLIENTE HTTPS(postman,insomnia client REST)!!>></strong>
 
