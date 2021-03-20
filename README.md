@@ -8,9 +8,11 @@ Como es un proyecto de ejemplo la logica del negocio es un CRUD comun.
 
 
 endpoints:
-json para aniadir una tabla
-metodo post
+
+
+metodo post(para aniadir una tabla)
 http://127.0.0.1:1234/mysql_engine/table
+
 {
     "name":"lpm",
     "campos":[
@@ -18,6 +20,17 @@ http://127.0.0.1:1234/mysql_engine/table
         {"field":"firstname","type_column":"VARCHAR(30)","null_column":"NOT NULL","key":"","default":"","extra":"" }
     ]
 }
+
+metodo put(para actualizar una tabla por nombre)
+{ 
+    "name":"lpm", 
+    "campos":
+    [
+        {"field":"id","type_column":"INT(6) UNSIGNED","key":"PRIMARY KEY","null_column":"","default":"","extra":"AUTO_INCREMENT"},
+        {"field":"other","type_column":"VARCHAR(56)","null_column":"","key":"","default":"DEFAULT 'LPM NOTHING'","extra":"" },
+        {"field":"other2","type_column":"VARCHAR(56)","null_column":"","key":"","default":"DEFAULT 'LPM NOTHING'","extra":"" } 
+    ]
+ }
 
 metodo get(listar todas las bases de datos)
 http://127.0.0.1:1234/mysql_engine
@@ -33,3 +46,9 @@ http://127.0.0.1:1234/mysql_engine/
 
 metodo get(listar tablas y columnas)
 http://127.0.0.1:1234/mysql_engine/all
+
+
+metodo get(para usar base de datos(selecciona))
+http://127.0.0.1:1234/mysql_engine/<nombre_database>
+
+
