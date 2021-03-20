@@ -3,8 +3,10 @@ from sqlalchemy.sql import text
 from src.dto.table import CamposDTO, TableDTO
 
 class MysqlEngine():
-    def create_database(self, name):
-        conn.execute('create database '+name)
+    def create_database(self, name:str):
+        conn.execute('create database {}'.format(name))
+        conn.execute('commit')
+
     def all_databases(self):
         dbs=conn.execute('show databases')
         available_databases= dbs.fetchall()
@@ -19,8 +21,6 @@ class MysqlEngine():
         return response
     
     def all_tables_columns(self):            
-        conn.execute('use practice')
-        conn.execute('commit')
         dbs=conn.execute('show tables')
         available_tables=dbs.fetchall()
 
@@ -62,4 +62,14 @@ class MysqlEngine():
         conn.execute('commit')
 
     def update_table(self, table:TableDTO):
-        pass
+        #Actualizando base de datos de la forma menos modesta posible(campiranamente)
+        nombre = str(table.name[0])
+        query="DROP TABLE IF EXISTS {}".format(nombre)
+        conn.execute(query)
+        conn.execute('commit')
+        self.create_table(table)
+    
+    def select_database(self,name:str):
+        query="use {}".format(name)
+        conn.execute(query)
+        conn.execute('commit')
